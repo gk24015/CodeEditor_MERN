@@ -1,13 +1,14 @@
 const express = require('express');
-//const connectDB = require('./config/db');
+//const { Mongoose } = require('mongoose');
+const connectDB = require('./config/db');
 const app= express();
 //connect database
-//connectDB();
+connectDB();
 
 app.use(express.json());
 
 app.get('/',(req,res) => res.send("Runnin"));
 //connecting to server
-const PORT = process.env.PORT|| 5000;
+const PORT = process.env.PORT|| 3000;
 app.listen(PORT,() => console.log('Server started'));
 
