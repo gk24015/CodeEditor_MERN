@@ -1,3 +1,4 @@
 {
-"mongoURI":"mongodb+srv://gk24015:gk24015@mern.cejxw.mongodb.net/test1?retryWrites=true&w=majority"
+"mongoURI":"mongodb+srv://gk24015:gk24015@mern.cejxw.mongodb.net/test1?retryWrites=true&w=majority",
+"jwtSecret":"heydelilah"
 }
