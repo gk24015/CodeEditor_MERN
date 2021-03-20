@@ -1,9 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import classnames from "classnames";
-import register from "./register.svg";
-
-export const Register = () => {
+//import register from "./register.svg";
+import {connect} from 'react-redux';
+import {setAlert} from '../../actions/alert';
+import PropTypes from 'prop-types';
+import { register } from  '../../actions/auth';
+export const Register = ({setAlert, register}) => {
     const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -19,9 +22,9 @@ export const Register = () => {
     const onSubmit = async (e) => {
       e.preventDefault();
       if (password !== password2) {
-        console.log("password donot match");//setAlert('Passwords do not match', 'danger');
+        setAlert('Password donot match','danger');//setAlert('Passwords do not match', 'danger');
       } else {
-        console.log(formData);//register({ name, email, password });
+        register({ name, email, password });
       }
     };
     
@@ -30,9 +33,7 @@ export const Register = () => {
     <div className="container">
         <div className="row" style={{marginTop:"4rem"}}>   
 
-        <div className="col s3">
-          <img src={register} alt="register" width="450px" style={{marginLeft:"30px", marginTop:"100px"}}/>
-        </div>     
+            
           <h1 className="large text-primary">Sign Up</h1>
           <p className="lead">
             <i className="fas fa-user" /> Create Your Account
@@ -93,11 +94,18 @@ export const Register = () => {
             Go back to home page!!  <Link to="/">CodeMonks</Link>
             
           </p>
+          
           </div>
           </div>
         </Fragment>
       );
     
 }
-
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+}
+export default connect(null,{
+  setAlert,
+  register
+})(Register);
