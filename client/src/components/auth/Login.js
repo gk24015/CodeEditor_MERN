@@ -1,9 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter ,Redirect} from "react-router-dom";
 import classnames from "classnames";
-import login from "./login.svg";
+import login_ from "./login1.svg";
 import Navbar from "../layout/Navbar.js"
-export const Login = () => {
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {login} from '../../actions/auth';
+export const Login = ({login, isAuthenticated}) => {
     const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -17,11 +20,17 @@ export const Login = () => {
    
     const onSubmit = async (e) => {
       e.preventDefault();
+      login(email,password);
      
-        console.log('Success login');//register({ name, email, password });
+        //console.log('Success login');
+        //register({ name, email, password });
       
     };
-    
+    //Redirect if logged in
+    if(isAuthenticated)
+    {
+      return <Redirect to="/dashboard"/>
+    }
     return (
         <Fragment>
     
@@ -32,7 +41,7 @@ export const Login = () => {
         <div className="row" style={{marginTop:"4rem"}}>   
 
         <div className="col s3">
-          <img src={login} alt="login" width="450px" style={{marginLeft:"30px", marginTop:"100px"}}/>
+          <img src={login_} alt="login" width="450px" style={{marginLeft:"30px", marginTop:"100px"}}/>
         </div>     
           <h1 className="large text-primary">Login</h1>
          
@@ -78,5 +87,11 @@ export const Login = () => {
       );
     
 }
-
-export default Login;
+Login.propTypes={
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+}
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+export default connect(mapStateToProps,{login})(Login);
