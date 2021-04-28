@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import img from "./Coder.svg";
 import "./Landing.css"
 import Navbar from "./Navbar"
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 
-class Landing extends Component {
-  render() {
-    
+const Landing=({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
+
     return (
       <div>
        
@@ -50,6 +54,11 @@ class Landing extends Component {
       </div>
     );
   }
-}
 
-export default Landing;
+Landing.propTypes={
+  isAuthenticated:PropTypes.bool,
+}
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+export default connect(mapStateToProps)(Landing);

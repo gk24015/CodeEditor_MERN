@@ -19,5 +19,8 @@
     font-size: x-large;
     text-align: center;
   }
-  
+  .alert-success {
+    background: var(--success-color);
+    color: #fff;
+  }
   
