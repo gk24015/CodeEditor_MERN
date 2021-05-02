@@ -1,6 +1,7 @@
 import {
     GET_PROFILE,
     PROFILE_ERROR,
+    UPDATE_PROFILE,
     CLEAR_PROFILE
     
   } from '../actions/types';
@@ -18,7 +19,7 @@ import {
   
     switch (type) {
       case GET_PROFILE:
-    //  case UPDATE_PROFILE:
+      case UPDATE_PROFILE:
         return {
           ...state,
           profile: payload,

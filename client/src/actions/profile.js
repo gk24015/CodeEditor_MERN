@@ -3,7 +3,8 @@ import {setAlert} from './alert';
 
 import{
     GET_PROFILE,
-    PROFILE_ERROR,
+    UPDATE_PROFILE,
+    PROFILE_ERROR
     
 } from './types';
 //get current users profile
@@ -27,12 +28,12 @@ export const getCurrentProfile = () => async (dispatch) => {
     dispatch
   ) => {
     try {
-      const config={
+    /*  const config={
         headers:{
           'Content-Type':'application/json'
         }
-      }
-      const res = await axios.post('/api/profile', formData,config);
+      }*/
+      const res = await axios.post('/api/profile', formData);
   
       dispatch({
         type: GET_PROFILE,

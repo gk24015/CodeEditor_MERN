@@ -1,4 +1,6 @@
 {
 "mongoURI":"mongodb+srv://gk24015:gk24015@mern.cejxw.mongodb.net/test1?retryWrites=true&w=majority",
-"jwtSecret":"heydelilah"
+"jwtSecret":"heydelilah",
+ "githubClientId":"ef2805748e55ab47b3f8",
+ "githubSecret":"1921f46405464ca31180c8127172ad24d94d6ab4"
 }
